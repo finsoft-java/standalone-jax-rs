@@ -19,6 +19,6 @@ public class App {
 		URI baseUri = UriBuilder.fromUri(host).port(port).build();
 		ResourceConfig config = new ResourceConfig(JaxRsEndpoint.class);
 		HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-		System.out.println("Web server running...");
+		System.out.println("Web server running on port " + port + "...");
 	}
 }
