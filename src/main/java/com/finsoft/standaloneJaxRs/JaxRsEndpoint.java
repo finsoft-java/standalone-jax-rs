@@ -1,6 +1,5 @@
 package com.finsoft.standaloneJaxRs;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,15 +13,18 @@ public class JaxRsEndpoint {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getdata(@Context Request request) {
+	public String getData(@Context Request request) {
+		System.out.println("getData");
 		return "Hello world";
 	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	// @Consumes(MediaType.APPLICATION_JSON) not supported!
 	@Produces(MediaType.TEXT_PLAIN)
-	public String postMovieEvent(@Context Request request, String json) {
-		return "Received data " + json;
+	@Path("echo")
+	public String postData(String body) {
+		System.out.println("postData body=" + body);
+		return "received: " + body;
 	}
 
 }
