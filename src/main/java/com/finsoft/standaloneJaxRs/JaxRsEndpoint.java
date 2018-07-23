@@ -32,7 +32,7 @@ public class JaxRsEndpoint {
 	@POST
 	// @Consumes(MediaType.APPLICATION_JSON) not supported!
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("echo")
+	@Path("err")
 	public Response postDataError(String body) {
 		System.out.println("postData throwing exception");
 		return Response.serverError().build();
