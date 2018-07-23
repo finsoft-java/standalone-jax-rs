@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 
 @Path("/")
 public class JaxRsEndpoint {
@@ -27,4 +28,13 @@ public class JaxRsEndpoint {
 		return "received: " + body;
 	}
 
+
+	@POST
+	// @Consumes(MediaType.APPLICATION_JSON) not supported!
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("echo")
+	public Response postDataError(String body) {
+		System.out.println("postData throwing exception");
+		return Response.serverError().build();
+	}
 }
