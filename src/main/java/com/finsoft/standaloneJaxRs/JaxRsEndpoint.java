@@ -33,7 +33,23 @@ public class JaxRsEndpoint {
 	// @Consumes(MediaType.APPLICATION_JSON) not supported!
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("echo")
-	public String postData(String body, @Context HttpServletRequest request) {
+	public String postData(String body) {
+		System.out.println("postData body=" + body);
+		return "received: " + body;
+	}
+
+	/**
+	 * Accept any POST request, echoes it body, write to stdout some more info.
+	 * 
+	 * @param body
+	 * @param request
+	 * @return
+	 */
+	@POST
+	// @Consumes(MediaType.APPLICATION_JSON) not supported!
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("echoContext")
+	public String postDataContext(String body, @Context HttpServletRequest request) {
 		System.out.println("postData body=" + body);
 
 		Enumeration<String> headers = request.getHeaderNames();
