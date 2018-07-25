@@ -1,5 +1,8 @@
 package com.finsoft.standaloneJaxRs;
 
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,16 +22,34 @@ public class JaxRsEndpoint {
 		return "Hello world";
 	}
 
+	/**
+	 * Accept any POST request, echoes it body, write to stdout some more info.
+	 * 
+	 * @param body
+	 * @param request
+	 * @return
+	 */
 	@POST
 	// @Consumes(MediaType.APPLICATION_JSON) not supported!
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("echo")
-	public String postData(String body) {
+	public String postData(String body, @Context HttpServletRequest request) {
 		System.out.println("postData body=" + body);
+
+		Enumeration<String> headers = request.getHeaderNames();
+		while (headers.hasMoreElements()) {
+			String header = headers.nextElement();
+			System.out.println("Header " + header + ": " + request.getHeader(header));
+		}
 		return "received: " + body;
 	}
 
-
+	/**
+	 * Always return an HTTP 500 error
+	 * 
+	 * @param body
+	 * @return
+	 */
 	@POST
 	// @Consumes(MediaType.APPLICATION_JSON) not supported!
 	@Produces(MediaType.TEXT_PLAIN)
