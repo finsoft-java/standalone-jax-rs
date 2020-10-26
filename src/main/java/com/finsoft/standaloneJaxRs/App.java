@@ -20,5 +20,10 @@ public class App {
 		ResourceConfig config = new ResourceConfig(JaxRsEndpoint.class);
 		HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
 		System.out.println("Web server running on port " + port + "...");
+		System.out.println("Accepted paths:");
+		System.out.println("GET /");
+		System.out.println("POST /echo");
+		System.out.println("POST /echoContext");
+		System.out.println("POST /err");
 	}
 }
